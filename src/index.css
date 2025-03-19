@@ -83,3 +83,60 @@
   height: 0;
   pointer-events: none;
 }
+
+/* Basic editor styles */
+.tiptap {
+  
+  :first-child {
+    margin-top: 0;
+  }
+
+  ul, 
+  ol {
+    padding: 0 1rem;
+    margin: 1rem 1rem 1rem 0.4rem;
+    
+    li p {
+      margin-top: 0.25em;
+      margin-bottom: 0.25em;
+    }
+  }
+
+  /* Add explicit styling for bullet markers */
+  ul {
+    list-style-type: disc;
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  /* Heading styles */
+  h1, 
+  h2, 
+  h3, 
+  h4, 
+  h5, 
+  h6 {
+    line-height: 1.1;
+    text-wrap: pretty;
+  }
+
+  h1 { 
+    font-size: 1.4rem; 
+  }
+
+  h2 { 
+    font-size: 1.2rem; 
+  }
+
+  h3 { 
+    font-size: 1.1rem; 
+  }
+
+  h4, 
+  h5, 
+  h6 { 
+    font-size: 1rem; 
+  }
+}
