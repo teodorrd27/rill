@@ -7,6 +7,7 @@ import Italic from '@tiptap/extension-italic'
 import Heading from '@tiptap/extension-heading'
 import ListItem from '@tiptap/extension-list-item'
 import BulletList from '@tiptap/extension-bullet-list'
+import History from '@tiptap/extension-history'
 // import OrderedList from '@tiptap/extension-ordered-list'
 
 import { Button } from '@/components/ui/button'
@@ -35,6 +36,7 @@ export const EditorWidget: FC<IEditorWidget> = ({ydoc, docKey}) => {
       Bold,
       ListItem,
       BulletList,
+      History,
       // OrderedList,
       Placeholder.configure({
         placeholder: 'Add text'
@@ -97,10 +99,10 @@ export const EditorWidget: FC<IEditorWidget> = ({ydoc, docKey}) => {
           <ListOrdered className="h-4 w-4" />
         </Button> */}
         <div className="ml-auto flex gap-1">
-          <Button variant="ghost" size="sm" className="text-[#8c6d3f]">
+          <Button disabled={!editor.can().undo()} onClick={() => editor.chain().focus().undo().run()} variant="ghost" size="sm" className="text-[#8c6d3f]">
             <Undo className="h-4 w-4" />
           </Button>
-          <Button variant="ghost" size="sm" className="text-[#8c6d3f]">
+          <Button disabled={!editor.can().redo()} onClick={() => editor.chain().focus().redo().run()} variant="ghost" size="sm" className="text-[#8c6d3f]">
             <Redo className="h-4 w-4" />
           </Button>
         </div>
