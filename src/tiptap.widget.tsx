@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button'
 
 import { Bold as BoldIcon, Italic as ItalicIcon, List, 
   // ListOrdered,
-  Heading1, Heading2, Undo, Redo } from 'lucide-react'
+  Heading1, Heading2, Undo, Redo, Trash2 } from 'lucide-react'
 
 import type * as Y from 'yjs'
 import { FC, useEffect } from 'react'
@@ -78,7 +78,7 @@ export const EditorWidget: FC<IEditorWidget> = ({ydoc, docKey}) => {
   // }
 
   return (
-    <div className="editor-widget rounded-md border border-[#c8a97e] bg-[#fdfbf7] p-4 shadow-sm">
+    <div className="relative editor-widget rounded-md border border-[#c8a97e] bg-[#fdfbf7] p-4 shadow-sm">
       <div className="toolbar flex flex-wrap gap-1 mb-2 pb-2 border-b border-[#e9dcc8]">
         <Button selected={editor.isActive('bold')} onClick={toggleBold} variant="ghost" size="sm" className="text-[#8c6d3f]">
           <BoldIcon className="h-4 w-4" />
@@ -110,6 +110,14 @@ export const EditorWidget: FC<IEditorWidget> = ({ydoc, docKey}) => {
       <div className="editor-content min-h-[150px] p-2 focus-within:outline-none tiptap" contentEditable={false}>
         <EditorContent editor={editor} />
       </div>
+      <Button
+          variant="ghost"
+          size="sm"
+          className="absolute bottom-2 right-2 text-[#8c6d3f] hover:bg-[#f0e6d6] hover:text-[#8c6d3f]"
+          title="Remove widget"
+        >
+          <Trash2 className="h-4 w-4" />
+        </Button>
     </div>
   )
 }

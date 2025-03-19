@@ -55,9 +55,6 @@ function Button({
   }) {
   const Comp = asChild ? Slot : "button"
 
-  useEffect(() => {
-    console.log('selected changed ', selected)
-  }, [selected])
   return (
     <Comp
       data-slot="button"
