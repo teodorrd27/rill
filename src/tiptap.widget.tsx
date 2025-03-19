@@ -16,7 +16,7 @@ import { Bold as BoldIcon, Italic as ItalicIcon, List,
   // ListOrdered,
   Heading1, Heading2, Undo, Redo, Trash2 } from 'lucide-react'
 
-import type * as Y from 'yjs'
+import * as Y from 'yjs'
 import { FC, useEffect } from 'react'
 import { EditorContent, useEditor } from '@tiptap/react'
 import { ySyncPlugin } from 'y-prosemirror'
@@ -24,9 +24,10 @@ import { ySyncPlugin } from 'y-prosemirror'
 interface IEditorWidget {
   ydoc: Y.Doc
   docKey: string
+  removeWidgetById: (id: string) => void
 }
 
-export const EditorWidget: FC<IEditorWidget> = ({ydoc, docKey}) => {
+export const EditorWidget: FC<IEditorWidget> = ({ydoc, docKey, removeWidgetById}) => {
   const editor = useEditor({
     extensions: [
       Document,
@@ -49,12 +50,15 @@ export const EditorWidget: FC<IEditorWidget> = ({ydoc, docKey}) => {
   })
 
   useEffect(() => {
-    const yPlugin = ySyncPlugin(ydoc.getXmlFragment(docKey))
+    console.log('hitting this')
+    const mapRef = ydoc.getMap<Y.XmlFragment>('root')
+    const xmlFragment = mapRef.has(docKey) ? mapRef.get(docKey)! : mapRef.set(docKey, new Y.XmlFragment())
+    const yPlugin = ySyncPlugin(xmlFragment)
     if (editor && !Object.prototype.hasOwnProperty.call(editor.state, 'y-sync$')) {
+      console.log('registering ysync')
       editor.registerPlugin(yPlugin)
     }
-    editor?.chain().focus()
-  })
+  },)
 
   if (!editor) {
     return null
@@ -111,6 +115,7 @@ export const EditorWidget: FC<IEditorWidget> = ({ydoc, docKey}) => {
         <EditorContent editor={editor} />
       </div>
       <Button
+          onClick={() => removeWidgetById(docKey)}
           variant="ghost"
           size="sm"
           className="absolute bottom-2 right-2 text-[#8c6d3f] hover:bg-[#f0e6d6] hover:text-[#8c6d3f]"

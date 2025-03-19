@@ -6,6 +6,7 @@ import getYjs from './utils/yjs.import'
 const Y = await getYjs()
 
 const inMemorySession = new Y.Doc()
+inMemorySession.getMap('root')
 
 interface WSSessions {
   [userUUID: string]: {
@@ -26,12 +27,7 @@ const broadcastYDocChange = (update: Uint8Array<ArrayBufferLike>, app: Elysia) =
 }
 
 inMemorySession.on('update', (update) => {
-  for (const [key, value] of inMemorySession.share.entries()) {
-    console.log('value is ', key)
-    if (value instanceof Y.XmlFragment) {
-      console.log(`Found XML fragment: ${key}`);
-    }
-  }
+  console.log('update')
   broadcastYDocChange(update, app)
 })
 
@@ -42,8 +38,7 @@ const app = new Elysia()
       const uuid = crypto.randomUUID()
 
       return {
-        uuid: uuid,
-        whatevertheFuck: 'fuck off',
+        uuid
       }
     })
     .ws('/', {
@@ -52,12 +47,15 @@ const app = new Elysia()
       message: (ws, message) => {
         if (message instanceof Uint8Array) {
           console.log('receiving message ', message)
+          ws.unsubscribe('broadcast')
           Y.applyUpdate(inMemorySession, message)
+          ws.subscribe('broadcast')
         }
         // Handle message
       },
       open: async (ws) => {
         ws.subscribe('broadcast')
+        console.log('connected ', ws.data.uuid)
         wsSessions[ws.data.uuid] = {
           connectedAt: dayjs()
         }
