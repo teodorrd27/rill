@@ -1,13 +1,9 @@
 import RillLogo from '@/assets/rill-logo.png'
-import Document from '@tiptap/extension-document'
-import Text from '@tiptap/extension-text'
-import Paragraph from '@tiptap/extension-paragraph'
-import Placeholder from '@tiptap/extension-placeholder'
 
-import { EditorContent, useEditor } from '@tiptap/react'
-import { FC, useEffect, useState } from 'react'
-import { ySyncPlugin } from 'y-prosemirror'
+import { useEffect, useState } from 'react'
+
 import * as Y from 'yjs'
+import { EditorWidget } from './tiptap.widget'
 
 const ydoc = new Y.Doc()
 
@@ -65,7 +61,7 @@ export default function Home() {
         </div>
         <h1 className="text-2xl font-semibold text-center text-[#8c6d3f]">Rill</h1>
         <div className='w-full'>
-          <Editor docKey='uuidhere' ydoc={ydoc} />
+          <EditorWidget ydoc={ydoc} docKey='uuidhere' />
         </div>
       </div>
     </main>
@@ -77,35 +73,5 @@ function Logo({ className }: { className?: string }) {
     <div className="flex flex-col rounded-lg items-center gap-2 bg-amber-700">
       <img src={RillLogo} alt="Rill Logo" className={className} />
     </div>
-  )
-}
-
-interface IEditor {
-  ydoc: Y.Doc,
-  docKey: string
-}
-
-const Editor: FC<IEditor> = ({ydoc, docKey}) => {
-  const editor = useEditor({
-    extensions: [
-      Document,
-      Text,
-      Paragraph,
-      Placeholder.configure({
-        placeholder: 'Add text'
-      })
-    ],
-    content: ``,
-  })
-
-  useEffect(() => {
-    const yPlugin = ySyncPlugin(ydoc.getXmlFragment(docKey))
-    if (editor && !Object.prototype.hasOwnProperty.call(editor.state, 'y-sync$')) {
-      editor.registerPlugin(yPlugin)
-    }
-    editor?.chain().focus()
-  })
-  return (
-    <EditorContent editor={editor} />
   )
 }
