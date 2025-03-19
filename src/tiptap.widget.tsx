@@ -7,10 +7,13 @@ import Italic from '@tiptap/extension-italic'
 import Heading from '@tiptap/extension-heading'
 import ListItem from '@tiptap/extension-list-item'
 import BulletList from '@tiptap/extension-bullet-list'
+// import OrderedList from '@tiptap/extension-ordered-list'
 
 import { Button } from '@/components/ui/button'
 
-import { Bold as BoldIcon, Italic as ItalicIcon, List, ListOrdered, Heading1, Heading2, Undo, Redo } from 'lucide-react'
+import { Bold as BoldIcon, Italic as ItalicIcon, List, 
+  // ListOrdered,
+  Heading1, Heading2, Undo, Redo } from 'lucide-react'
 
 import type * as Y from 'yjs'
 import { FC, useEffect } from 'react'
@@ -32,6 +35,7 @@ export const EditorWidget: FC<IEditorWidget> = ({ydoc, docKey}) => {
       Bold,
       ListItem,
       BulletList,
+      // OrderedList,
       Placeholder.configure({
         placeholder: 'Add text'
       }),
@@ -66,6 +70,10 @@ export const EditorWidget: FC<IEditorWidget> = ({ydoc, docKey}) => {
   const toggleBulletList = () => {
     editor.chain().focus().toggleBulletList().run()
   }
+  // TODO: This doesn't behave as expected. Makes things disappear. Possibly because of YJS incompatibility.
+  // const toggleOrderedList = () => {
+  //   editor.chain().focus().toggleOrderedList().run()
+  // }
 
   return (
     <div className="editor-widget rounded-md border border-[#c8a97e] bg-[#fdfbf7] p-4 shadow-sm">
@@ -85,9 +93,9 @@ export const EditorWidget: FC<IEditorWidget> = ({ydoc, docKey}) => {
         <Button selected={editor.isActive('bulletList')} onClick={toggleBulletList} variant="ghost" size="sm" className="text-[#8c6d3f]">
           <List className="h-4 w-4" />
         </Button>
-        <Button variant="ghost" size="sm" className="text-[#8c6d3f]">
+        {/* <Button selected={editor.isActive('orderedList')} onClick={toggleOrderedList} variant="ghost" size="sm" className="text-[#8c6d3f]">
           <ListOrdered className="h-4 w-4" />
-        </Button>
+        </Button> */}
         <div className="ml-auto flex gap-1">
           <Button variant="ghost" size="sm" className="text-[#8c6d3f]">
             <Undo className="h-4 w-4" />
