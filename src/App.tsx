@@ -8,6 +8,22 @@ import { EditorContent, useEditor } from '@tiptap/react'
 import { FC } from 'react'
 
 export default function Home() {
+  const [, _setWS] = useState<WebSocket | null>(null)
+
+  useEffect(() => {
+    const newWS = new WebSocket('http://localhost:3000/')
+    // newWS.binaryType = 'arraybuffer'
+    newWS.onmessage = onmessage
+    newWS.onopen = onopen
+
+    _setWS(newWS)
+
+    return (() => {
+      console.log('cleanup')
+      newWS.close()
+    })
+  }, [])
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-[#faf6f0]">
       <div className="flex flex-col w-full items-center max-w-3xl">
