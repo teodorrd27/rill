@@ -82,46 +82,46 @@ export const EditorWidget: FC<IEditorWidget> = ({ydoc, docKey, removeWidgetById}
   // }
 
   return (
-    <div className="relative editor-widget rounded-md border border-[#c8a97e] bg-[#fdfbf7] p-4 shadow-sm">
-      <div className="toolbar flex flex-wrap gap-1 mb-2 pb-2 border-b border-[#e9dcc8]">
-        <Button selected={editor.isActive('bold')} onClick={toggleBold} variant="ghost" size="sm" className="text-[#8c6d3f]">
-          <BoldIcon className="h-4 w-4" />
+    <div className='relative editor-widget rounded-md border border-[#c8a97e] bg-[#fdfbf7] p-4 shadow-sm'>
+      <div className='toolbar flex flex-wrap gap-1 mb-2 pb-2 border-b border-[#e9dcc8]'>
+        <Button selected={editor.isActive('bold')} onClick={toggleBold} variant='ghost' size='sm' className='text-[#8c6d3f]'>
+          <BoldIcon className='h-4 w-4' />
         </Button>
-        <Button selected={editor.isActive('italic')} onClick={toggleItalic} variant="ghost" size="sm" className="text-[#8c6d3f]">
-          <ItalicIcon className="h-4 w-4" />
+        <Button selected={editor.isActive('italic')} onClick={toggleItalic} variant='ghost' size='sm' className='text-[#8c6d3f]'>
+          <ItalicIcon className='h-4 w-4' />
         </Button>
-        <Button selected={editor.isActive('heading', { level: 1 })} onClick={() => toggleHeading(1)} variant="ghost" size="sm" className="text-[#8c6d3f]">
-          <Heading1 className="h-4 w-4" />
+        <Button selected={editor.isActive('heading', { level: 1 })} onClick={() => toggleHeading(1)} variant='ghost' size='sm' className='text-[#8c6d3f]'>
+          <Heading1 className='h-4 w-4' />
         </Button>
-        <Button selected={editor.isActive('heading', { level: 2 })} onClick={() => toggleHeading(2)} variant="ghost" size="sm" className="text-[#8c6d3f]">
-          <Heading2 className="h-4 w-4" />
+        <Button selected={editor.isActive('heading', { level: 2 })} onClick={() => toggleHeading(2)} variant='ghost' size='sm' className='text-[#8c6d3f]'>
+          <Heading2 className='h-4 w-4' />
         </Button>
-        <Button selected={editor.isActive('bulletList')} onClick={toggleBulletList} variant="ghost" size="sm" className="text-[#8c6d3f]">
-          <List className="h-4 w-4" />
+        <Button selected={editor.isActive('bulletList')} onClick={toggleBulletList} variant='ghost' size='sm' className='text-[#8c6d3f]'>
+          <List className='h-4 w-4' />
         </Button>
-        {/* <Button selected={editor.isActive('orderedList')} onClick={toggleOrderedList} variant="ghost" size="sm" className="text-[#8c6d3f]">
-          <ListOrdered className="h-4 w-4" />
+        {/* <Button selected={editor.isActive('orderedList')} onClick={toggleOrderedList} variant='ghost' size='sm' className='text-[#8c6d3f]'>
+          <ListOrdered className='h-4 w-4' />
         </Button> */}
-        <div className="ml-auto flex gap-1">
-          <Button disabled={!editor.can().undo()} onClick={() => editor.chain().focus().undo().run()} variant="ghost" size="sm" className="text-[#8c6d3f]">
-            <Undo className="h-4 w-4" />
+        <div className='ml-auto flex gap-1'>
+          <Button disabled={!editor.can().undo()} onClick={() => editor.chain().focus().undo().run()} variant='ghost' size='sm' className='text-[#8c6d3f]'>
+            <Undo className='h-4 w-4' />
           </Button>
-          <Button disabled={!editor.can().redo()} onClick={() => editor.chain().focus().redo().run()} variant="ghost" size="sm" className="text-[#8c6d3f]">
-            <Redo className="h-4 w-4" />
+          <Button disabled={!editor.can().redo()} onClick={() => editor.chain().focus().redo().run()} variant='ghost' size='sm' className='text-[#8c6d3f]'>
+            <Redo className='h-4 w-4' />
           </Button>
         </div>
       </div>
-      <div className="editor-content min-h-[150px] p-2 focus-within:outline-none tiptap" contentEditable={false}>
+      <div className='editor-content min-h-[150px] p-2 focus-within:outline-none tiptap' contentEditable={false}>
         <EditorContent editor={editor} />
       </div>
       <Button
           onClick={() => removeWidgetById(docKey)}
-          variant="ghost"
-          size="sm"
-          className="absolute bottom-2 right-2 text-[#8c6d3f] hover:bg-[#f0e6d6] hover:text-[#8c6d3f]"
-          title="Remove widget"
+          variant='ghost'
+          size='sm'
+          className='absolute bottom-2 right-2 text-[#8c6d3f] hover:bg-[#f0e6d6] hover:text-[#8c6d3f]'
+          title='Remove widget'
         >
-          <Trash2 className="h-4 w-4" />
+          <Trash2 className='h-4 w-4' />
         </Button>
     </div>
   )

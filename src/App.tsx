@@ -25,35 +25,35 @@ export default function Home() {
 
   const handleAddWidget = () => {
     const newKey = uuidv4()
-    setKeys((prevKeys) => [...prevKeys, newKey]);
+    setKeys((prevKeys) => [...prevKeys, newKey])
   }
 
   const handleRemoveWidget = (key: string) => {
-    setKeys((prevKeys) => prevKeys.filter((k) => k !== key));
+    setKeys((prevKeys) => prevKeys.filter((k) => k !== key))
     ydoc.getMap('root').delete(key)
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-[#faf6f0]">
-      <div className="flex flex-col w-full items-center max-w-3xl p-4">
-        <div className="flex w-10 aspect-square rounded-lg overflow-hidden">
+    <main className='flex min-h-screen flex-col items-center justify-center bg-[#faf6f0]'>
+      <div className='flex flex-col w-full items-center max-w-3xl p-4'>
+        <div className='flex w-10 aspect-square rounded-lg overflow-hidden'>
           <Logo />
         </div>
-        <h1 className="text-2xl font-semibold text-center text-[#8c6d3f]">Rill</h1>
+        <h1 className='text-2xl font-semibold text-center text-[#8c6d3f]'>Rill</h1>
         { keys.map(key => (
           <div key={key} className='w-full my-4'>
             <EditorWidget ydoc={ydoc} docKey={key} removeWidgetById={handleRemoveWidget} />
           </div>
         ))}
-        <div className="flex justify-center mt-4">
+        <div className='flex justify-center mt-4'>
         <Button
           onClick={handleAddWidget}
-          variant="outline"
-          size="sm"
-          className="rounded-full w-8 h-8 p-0 border-[#c8a97e] text-[#8c6d3f] hover:bg-[#f0e6d6] hover:text-[#8c6d3f]"
-          title="Add Text Widget"
+          variant='outline'
+          size='sm'
+          className='rounded-full w-8 h-8 p-0 border-[#c8a97e] text-[#8c6d3f] hover:bg-[#f0e6d6] hover:text-[#8c6d3f]'
+          title='Add Text Widget'
         >
-          <Plus className="h-4 w-4" />
+          <Plus className='h-4 w-4' />
         </Button>
       </div>
       </div>
@@ -63,8 +63,8 @@ export default function Home() {
 
 function Logo({ className }: { className?: string }) {
   return (
-    <div className="flex flex-col rounded-lg items-center gap-2 bg-amber-700">
-      <img src={RillLogo} alt="Rill Logo" className={className} />
+    <div className='flex flex-col rounded-lg items-center gap-2 bg-amber-700'>
+      <img src={RillLogo} alt='Rill Logo' className={className} />
     </div>
   )
 }
