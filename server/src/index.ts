@@ -29,7 +29,6 @@ const broadcastYDocChange = (update: Uint8Array<ArrayBufferLike>, app: Elysia) =
 }
 
 inMemorySession.on('update', (update) => {
-  console.log('update')
   broadcastYDocChange(update, app)
 })
 
