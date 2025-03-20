@@ -13,7 +13,7 @@
     "preview": "vite preview",
     "test": "bun test",
     "docker:build": "docker build -t rill .",
-    "docker:start": "docker run -p 3000:3000 rill"
+    "docker:start": "docker run --rm -it -p 3000:3000 rill"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
