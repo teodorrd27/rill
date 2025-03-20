@@ -39,13 +39,13 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-[#faf6f0]">
-      <div className="flex flex-col w-full items-center max-w-3xl">
+      <div className="flex flex-col w-full items-center max-w-3xl p-4">
         <div className="flex w-10 aspect-square rounded-lg overflow-hidden">
           <Logo />
         </div>
         <h1 className="text-2xl font-semibold text-center text-[#8c6d3f]">Rill</h1>
         { keys.map(key => (
-          <div key={key} className='w-full'>
+          <div key={key} className='w-full my-4'>
             <EditorWidget ydoc={ydoc} docKey={key} removeWidgetById={handleRemoveWidget} />
           </div>
         ))}
