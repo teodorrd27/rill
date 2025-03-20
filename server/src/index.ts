@@ -36,7 +36,6 @@ inMemorySession.on('update', (update) => {
 const app = new Elysia()
 
 if (Bun.env.NODE_ENV === 'production') {
-  console.log('production indeed!')
   app.use(staticPlugin({
     assets: 'dist',
     prefix: '/',
@@ -57,7 +56,6 @@ app.group('/', (app) => {
       response: t.Union([t.String(), t.Uint8Array()]),
       message: (ws, message) => {
         if (message instanceof Uint8Array) {
-          console.log('receiving message ', message)
           ws.unsubscribe('broadcast')
           Y.applyUpdate(inMemorySession, message)
           ws.subscribe('broadcast')
@@ -88,4 +86,4 @@ app.group('/', (app) => {
   .all('/health', () => new Response('Healthy!'))
   .listen(3000)
 
-console.log('elysia running on localhost:3000')
+console.log('Server running on localhost:3000')
