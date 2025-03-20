@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "run-server": "bun ./server/src/index.ts",
+    "dev": "concurrently \"bun run-server\" \"vite\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "bun test"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
@@ -38,6 +40,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@types/bun": "^1.2.5",
     "@types/node": "^22.13.10",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",

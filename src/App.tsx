@@ -17,22 +17,18 @@ export default function Home() {
   useEffect(() => {
     const newKeys: string[] = []
     for (const key of ydoc.getMap('root').keys()) {
-      console.log('pushing keys')
       newKeys.push(key)
     }
-    console.log(newKeys)
     setKeys(newKeys)
   }, [ydoc, updateCounter])
 
 
   const handleAddWidget = () => {
     const newKey = uuidv4()
-    console.log('adding ', newKey)
     setKeys((prevKeys) => [...prevKeys, newKey]);
   }
 
   const handleRemoveWidget = (key: string) => {
-    console.log('deleting ', key)
     setKeys((prevKeys) => prevKeys.filter((k) => k !== key));
     ydoc.getMap('root').delete(key)
   }
