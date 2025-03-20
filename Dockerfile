@@ -21,6 +21,9 @@ FROM oven/bun:1.0.30-slim AS production
 
 WORKDIR /app
 
+# Set NODE_ENV to production
+ENV NODE_ENV=production
+
 # Copy built assets from builder stage
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./

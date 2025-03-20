@@ -34,11 +34,16 @@ inMemorySession.on('update', (update) => {
 })
 
 const app = new Elysia()
-  .use(staticPlugin({
-    assets: './dist',
+
+if (Bun.env.NODE_ENV === 'production') {
+  console.log('production indeed!')
+  app.use(staticPlugin({
+    assets: 'dist',
     prefix: '/',
   }))
-  .group('/', (app) => {
+}
+
+app.group('/', (app) => {
     return app
     .derive(() => {
       const uuid = crypto.randomUUID()
