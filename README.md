@@ -33,8 +33,7 @@ The application utilizes a CRDT-based architecture with YJS to optimize data tra
 git clone git@github.com:teodorrd27/rill.git
 
 # Install dependencies
-bun install
-cd server && bun install && cd ..
+bun setup
 
 # Run Preview (build should automatically run prior to the server) - Accessible on http://localhost:4173
 bun start

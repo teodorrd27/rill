@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "setup": "bun install && cd server && bun install && cd ..",
     "run-server": "bun ./server/src/index.ts",
     "dev": "concurrently \"bun run-server\" \"vite\"",
     "start": "bun run build && concurrently \"bun run-server\" \"bun run preview\"",
