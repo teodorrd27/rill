@@ -55,7 +55,7 @@ The application can be run in a Docker container:
 # Build the Docker image
 bun docker:build
 
-# Run the container - when you hit ctrl+c, container will be stopped and removed
+# Run the container - when you hit ctrl+c, container will be stopped and removed, so you can run the command again and again.
 bun docker:start
 ```
 
