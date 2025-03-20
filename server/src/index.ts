@@ -2,6 +2,8 @@ import Elysia, { t } from 'elysia'
 import type { ElysiaWS } from 'elysia/ws'
 import dayjs from 'dayjs'
 
+import { staticPlugin } from '@elysiajs/static'
+
 import getYjs from './utils/yjs.import'
 const Y = await getYjs()
 
@@ -32,6 +34,10 @@ inMemorySession.on('update', (update) => {
 })
 
 const app = new Elysia()
+  .use(staticPlugin({
+    assets: './dist',
+    prefix: '/',
+  }))
   .group('/', (app) => {
     return app
     .derive(() => {

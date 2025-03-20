@@ -12,6 +12,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@elysiajs/static": "^1.2.0",
     "dayjs": "^1.11.13",
     "elysia": "^1.2.25",
     "yjs": "^13.6.24"

@@ -9,7 +9,10 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "bun test"
+    "test": "bun test",
+    "docker:build": "docker build -t trumpet-widget .",
+    "docker:start": "docker run -p 3000:3000 trumpet-widget",
+    "start": "concurrently \"bun run-server\" \"bun run preview\""
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
@@ -28,6 +31,7 @@
     "@tiptap/react": "^2.6.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "concurrently": "^8.2.0",
     "lucide-react": "^0.483.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
