@@ -1,7 +1,7 @@
 # Rill - Real-time Collaborative Text Widgets
 
 ## Overview
-I took a slightly non-standard approach to the problem. Usually REST APIs would be the classical approach. I only used REST APIs as a way to serve the static page when deployed to production as well as for the /heatlh and /whosconnected endpoint. The latter is a way to check which websockets are connected to the server for collaborative purposes (see desired future work below).
+I took a slightly non-standard approach to the problem. Usually REST APIs would be the classical approach. I only used REST APIs as a way to serve the static page when deployed to production as well as for the `/heatlh` and `/whosconnected` endpoint. The latter is a way to check which websockets are connected to the server for collaborative purposes (see desired future work below).
 
 This application enables users to add, edit, and manage independent text widgets with real-time persistence. Built using a CRDT (Conflict-free Replicated Data Type) architecture with YJS to efficiently handle concurrent editing and data synchronization.
 
