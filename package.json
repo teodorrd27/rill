@@ -6,13 +6,13 @@
   "scripts": {
     "run-server": "bun ./server/src/index.ts",
     "dev": "concurrently \"bun run-server\" \"vite\"",
+    "start": "concurrently \"bun run-server\" \"bun run preview\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "bun test",
     "docker:build": "docker build -t trumpet-widget .",
-    "docker:start": "docker run -p 3000:3000 trumpet-widget",
-    "start": "concurrently \"bun run-server\" \"bun run preview\""
+    "docker:start": "docker run -p 3000:3000 trumpet-widget"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
